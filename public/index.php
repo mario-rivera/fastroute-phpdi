@@ -1,7 +1,9 @@
 <?php
 require_once(dirname(__DIR__ ) . "/config/bootstrap.php");
 
-$umbra = \UmbraBootstrap\boostrap();
+$app = \UmbraBootstrap\boostrap();
 
-$response = $umbra->dispatch();
-echo $response;
+$request = $app->get(\Psr\Http\Message\ServerRequestInterface::class);
+$response = $app->dispatch($request);
+
+$app->emit($response);

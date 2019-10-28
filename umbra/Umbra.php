@@ -3,6 +3,8 @@ namespace Umbra;
 
 use DI\Container;
 use FastRoute\Dispatcher;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 class Umbra
 {
@@ -11,17 +13,10 @@ class Umbra
      */
     private $container;
 
-    /**
-     * @var Dispatcher
-     */
-    private $dispatcher;
-
     public function __construct(
-        Container $container,
-        Dispatcher $dispatcher
+        Container $container
     ) {
         $this->container = $container;
-        $this->dispatcher = $dispatcher;
     }
 
     /**
@@ -32,14 +27,10 @@ class Umbra
         return $this->container->get($definition);
     }
 
-    public function dispatch()
+    public function dispatch(ServerRequestInterface $request)
     {
-        // Fetch method and URI from somewhere
-        $httpMethod = $_SERVER['REQUEST_METHOD'];
-        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-        $uri = rawurldecode($uri);
-
-        $routeInfo = $this->dispatcher->dispatch($httpMethod, $uri);
+        $dispatcher = $this->container->get(Dispatcher::class);
+        $routeInfo = $dispatcher->dispatch($request->getMethod(), $request->getUri()->getPath());
 
         switch ($routeInfo[0]) {
             case Dispatcher::NOT_FOUND:
@@ -57,5 +48,11 @@ class Umbra
                 return $this->container->call($handler, $parameters);
                 break;
         }
+    }
+
+    public function emit(ResponseInterface $response)
+    {
+        $emitter = $this->container->get(\Zend\HttpHandlerRunner\Emitter\SapiEmitter::class);
+        $emitter->emit($response);
     }
 }
