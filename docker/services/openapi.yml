@@ -10,6 +10,7 @@ services:
       - "8080:8080"
     environment:
       SWAGGER_JSON: /code/openapi.yml
+    network_mode: bridge
       
   docgen:
     image: php:7.3-cli-alpine
@@ -20,7 +21,4 @@ services:
       SWAGGER_TARGET: /code/openapi/yaml/openapi.yml
       SWAGGER_PATH: /code/openapi/annotations /code/src/Controller
     command: sh /code/docker/shell/docs.sh
-    
-networks:
-  default:
-    name: ${DOCKER_DEFAULT_NETWORK}
+    network_mode: bridge

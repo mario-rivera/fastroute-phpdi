@@ -1,5 +1,5 @@
 <?php
-namespace Umbra\Dispatcher;
+namespace Umbra\Routing\Factory;
 
 use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;

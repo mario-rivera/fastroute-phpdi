@@ -9,6 +9,7 @@ services:
     volumes:
       - .:/code
     command: bash
+    network_mode: bridge
 
   install:
     image: composer:1.8
@@ -18,6 +19,7 @@ services:
     volumes:
       - .:/code
     command: composer install -n --ignore-platform-reqs --no-scripts
+    network_mode: bridge
     
   update:
     image: composer:1.8
@@ -27,7 +29,4 @@ services:
     volumes:
       - .:/code
     command: composer update -n --ignore-platform-reqs --no-scripts
-
-networks:
-  default:
-    name: ${DOCKER_DEFAULT_NETWORK}
+    network_mode: bridge
