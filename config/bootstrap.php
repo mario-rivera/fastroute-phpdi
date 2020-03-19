@@ -4,11 +4,12 @@ require_once(dirname(__DIR__) . "/vendor/autoload.php");
 
 function boot(): \Umbra\Framework
 {
-    $builder = (new \DI\ContainerBuilder())
+    $container = (new \DI\ContainerBuilder())
     ->addDefinitions( __DIR__ . "/framework_definitions.php")
-    ->addDefinitions( __DIR__ . "/definitions.php");
+    ->addDefinitions( __DIR__ . "/definitions.php")
+    ->build();
 
-    $container = $builder->build();
+    ($container->get(\Umbra\Kernel\ErrorHandler\ErrorHandlerManager::class))->boot();
 
     return $container->get(\Umbra\Framework::class);
 }
