@@ -1,15 +1,15 @@
 <?php
-namespace Umbra\Kernel\ErrorHandler;
+namespace Umbra\Kernel\Errors;
 
-class ErrorHandlerManager
+class ErrorManager
 {
     /**
-     * @var ErrorHandlerInterface
+     * @var ExceptionHandlerInterface
      */
     private $errorHandler;
 
     public function __construct(
-        ErrorHandlerInterface $errorHandler
+        ExceptionHandlerInterface $errorHandler
     ) {
         $this->errorHandler = $errorHandler;
     }

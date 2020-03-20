@@ -28,5 +28,5 @@ return [
     /**
      * Error Handler
      */
-    \Umbra\Kernel\ErrorHandler\ErrorHandlerInterface::class => \DI\get(\Umbra\Kernel\ErrorHandler\ErrorHandler::class)
+    \Umbra\Kernel\Errors\ExceptionHandlerInterface::class => \DI\get(\Umbra\Exception\Handler\ExceptionHandler::class)
 ];

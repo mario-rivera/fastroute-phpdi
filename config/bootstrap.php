@@ -9,7 +9,7 @@ function boot(): \Umbra\Framework
     ->addDefinitions( __DIR__ . "/definitions.php")
     ->build();
 
-    ($container->get(\Umbra\Kernel\ErrorHandler\ErrorHandlerManager::class))->boot();
+    ($container->get(\Umbra\Kernel\Errors\ErrorManager::class))->boot();
 
     return $container->get(\Umbra\Framework::class);
 }

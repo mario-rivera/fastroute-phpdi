@@ -4,7 +4,7 @@ namespace Umbra;
 use DI\Container;
 
 use Umbra\Routing\Router;
-use Umbra\Emitter\SapiEmitter;
+use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 
 class Framework
 {
