@@ -1,7 +1,9 @@
 <?php
 namespace Umbra\Routing\Exception;
 
-class MethodNotAllowedException extends \RuntimeException
+use Umbra\Exception\PublicException;
+
+class MethodNotAllowedException extends PublicException
 {
 
 }

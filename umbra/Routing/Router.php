@@ -33,7 +33,7 @@ class Router
         switch ($routeInfo[0]) {
             case Dispatcher::NOT_FOUND:
                 // ... 404 Not Found
-                throw new Exception\RouteNotFoundException('Not found');
+                throw new Exception\RouteNotFoundException('Route not found');
                 break;
             case Dispatcher::METHOD_NOT_ALLOWED:
                 // ... 405 Method Not Allowed

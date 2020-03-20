@@ -1,7 +1,9 @@
 <?php
 namespace Umbra\Routing\Exception;
 
-class RouteNotFoundException extends \RuntimeException
+use Umbra\Exception\PublicException;
+
+class RouteNotFoundException extends PublicException
 {
 
 }
